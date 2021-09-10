@@ -2,15 +2,16 @@
 
 class Conta
 {
-    private $cpfTitular;
-    private $nomeTitular;
+    private $titular;
     private $saldo;
+    private static $numeroDeContas = 0;
 
-    public function __construct(string $cpfTitular, string $nomeTitular)
+    public function __construct(Titular $titular)
     {
-        $this->cpfTitular = $cpfTitular;
-        $this->nomeTitular =  $nomeTitular;
+        $this->titular = $titular;
         $this->saldo = 0;
+
+        self::$numeroDeContas++;
     }
 
     public function saca(float $valorASacar): void
@@ -49,23 +50,20 @@ class Conta
         return $this->saldo;
     }
 
-    public function defineCpfTitular(string $cpf): void
+    public function recuperaNomeTitular(): string
     {
-        $this->cpfTitular = $cpf;
+        return $this->titular->recuperaNome();
     }
-
     public function recuperaCpfTitular(): string
     {
-        return $this->cpfTitular;
+        return $this->titular->recuperaCpf();
     }
 
-    public function defineNomeTitular(string $nome): void
+
+
+    public static function recuperaNumeroDeContas(): int
     {
-        $this->nomeTitular = $nome;
-    }
-    public function recuperarNomeTitular(): string
-    {
-        return $this->nomeTitular;
+        return self::$numeroDeContas;
     }
 }
 
