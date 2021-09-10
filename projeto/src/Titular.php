@@ -4,15 +4,17 @@ class Titular
 {
     private Cpf $cpf;
     private String $nome;
+    private Endereco $endereco;
 
     /**
      * usando o atalho "Alt + Enter" e a opção "Initialize Fields" (ou "Initialize Properties")
      */
-    public function __construct(Cpf $cpf, string $nome)
+    public function __construct(Cpf $cpf, string $nome, Endereco $endereco)
     {
         $this->cpf = $cpf;
         $this->validaNomeTitular($nome);
         $this->nome = $nome;
+        $this->endereco = $endereco;
     }
 
     /**
@@ -34,6 +36,11 @@ class Titular
             echo "Nome precisa ter pelo menos 5 caracteres";
             exit();
         }
+    }
+
+    public function recuperaEndereco() : Endereco
+    {
+        return $this->endereco;
     }
 
 
