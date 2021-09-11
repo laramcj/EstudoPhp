@@ -1,10 +1,19 @@
 <?php
 
-require_once 'src/Conta.php';
-require_once 'src/Endereco.php';
-require_once 'src/Titular.php';
-require_once 'src/Cpf.php';
+spl_autoload_register(function (string $nomeCompletoDaClasse){
+    $caminhoArquivo = str_replace('Alura\\Banco', 'src', $nomeCompletoDaClasse);
+    $caminhoArquivo = str_replace('\\', DIRECTORY_SEPARATOR, $caminhoArquivo);
+    $caminhoArquivo .= '.php';
 
+    if (file_exists($caminhoArquivo)) {
+        require_once $caminhoArquivo;
+    }
+});
+
+use Alura\Banco\Modelo\Conta\Titular;
+use Alura\Banco\Modelo\Endereco;
+use Alura\Banco\Modelo\Cpf;
+use Alura\Banco\Modelo\Conta\Conta;
 
 $endereco = new Endereco('Petrópolis', 'um bairro', 'minha rua', '71B');
 $primeiraConta = new Conta(new Titular(new Cpf ('123.456.789-10'), 'Vinicius Dias', $endereco));
