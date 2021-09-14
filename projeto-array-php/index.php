@@ -1,14 +1,31 @@
-<?php
+<?php declare(strict_types=1);
 
-require 'Calculadora.php';
+namespace Alura;
 
-$notas = [9, 3, 10, 5, 10, 8];
+spl_autoload_register(
+    function (string $namespaceClasse): void{
+        $caminho = "/src";
+        $diretorio_classe = str_replace("\\", DIRECTORY_SEPARATOR, $namespaceClasse);
+        @include_once getcwd() . $caminho . DIRECTORY_SEPARATOR . "{$diretorio_classe}.php";
+    }
+);
 
-$calculadora = new Calculadora();
-$media = $calculadora->calculaMedia($notas);
+$correntistas_e_compras = [
+    "Giovanni",
+    12,
+    "Maria",
+    25,
+    "Luis",
+    "Luísa",
+    "12"
+];
 
-if ($media) {
-    echo "a média é: $media";
-} else {
-    echo "Não foi possível calcular a média";
-}
+echo "<pre>";
+
+var_dump($correntistas_e_compras);
+
+ArrayUtils::remover("Giovanni", $correntistas_e_compras);
+
+var_dump($correntistas_e_compras);
+
+echo "</pre>";
