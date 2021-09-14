@@ -1,9 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Alura;
 
 spl_autoload_register(
-    function (string $namespaceClasse): void{
+    function (string $namespaceClasse): void {
         $caminho = "/src";
         $diretorio_classe = str_replace("\\", DIRECTORY_SEPARATOR, $namespaceClasse);
         @include_once getcwd() . $caminho . DIRECTORY_SEPARATOR . "{$diretorio_classe}.php";

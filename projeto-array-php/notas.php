@@ -1,7 +1,8 @@
 <?php
 
+use Alura\Calculadora;
 
-require 'Calculadora.php';
+require_once "Calculadora.php";
 
 $notas = [9, 3, 10, 5, 10, 8];
 
