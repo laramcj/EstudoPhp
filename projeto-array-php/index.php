@@ -1,33 +1,37 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Alura;
 
-spl_autoload_register(
-    function (string $namespaceClasse): void {
-        $caminho = "/src";
-        $diretorio_classe = str_replace("\\", DIRECTORY_SEPARATOR, $namespaceClasse);
-        @include_once getcwd() . $caminho . DIRECTORY_SEPARATOR . "{$diretorio_classe}.php";
-    }
-);
+require 'autoload.php';
 
-$correntistas_e_compras = [
-    "Giovanni",
-    12,
-    "Maria",
-    25,
-    "Luis",
-    "Luísa",
-    "12"
+$correntistas = [
+  "Giovanni",
+  "João",
+  "Maria",
+  "Luis",
+  "Luisa",
+  "Rafael",
 ];
 
+$saldos = [
+   2500,
+   3000,
+   4400,
+   1000,
+   8700,
+   9000
+];
+
+$relacionados = array_combine ($correntistas, $saldos);
+
+if (array_key_exists("Joao", $relacionados)) {
+    echo "O saldo do Joao é: {$relacionados["Joao"]}";
+ } else {
+    echo "Não foi encontrado";
+};
+
+$maiores = ArrayUtils::encontrarPessoasComSaldoMaior(3000, $relacionados);
+
 echo "<pre>";
-
-var_dump($correntistas_e_compras);
-
-ArrayUtils::remover("Giovanni", $correntistas_e_compras);
-
-var_dump($correntistas_e_compras);
-
-echo "</pre>";
+var_dump($maiores);
+echo  "</pre>";
