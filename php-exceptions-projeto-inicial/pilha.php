@@ -6,9 +6,16 @@ function funcao1()
     try {
         funcao2();
     } catch (RuntimeException | DivisionByZeroError $erroOuExcecao) {
+
         echo $erroOuExcecao->getMessage() . PHP_EOL;
         echo $erroOuExcecao->getLine() . PHP_EOL;
         echo $erroOuExcecao->getTraceAsString() . PHP_EOL;
+
+        throw new RuntimeException(
+            'Exceção foi tratada, mas pega aí',
+            1,
+            $erroOuExcecao
+        );
     }
     echo 'Saindo da função 1' . PHP_EOL;
 }
@@ -16,12 +23,15 @@ function funcao1()
 function funcao2()
 {
     echo 'Entrei na função 2' . PHP_EOL;
-    $divisao = intdiv(5, 0);
-    $arrayFixo = new SplFixedArray(2);
-    $arrayFixo[3] = 'Valor';
-    for ($i = 1; $i <= 5; $i++) {
-        echo $i . PHP_EOL;
-    }
+
+    throw new RuntimeException();
+
+//    $divisao = intdiv(5, 0);
+//    $arrayFixo = new SplFixedArray(2);
+//    $arrayFixo[3] = 'Valor';
+//    for ($i = 1; $i <= 5; $i++) {
+//        echo $i . PHP_EOL;
+//    }
     echo 'Saindo da função 2' . PHP_EOL;
 }
 
