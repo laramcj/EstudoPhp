@@ -5,18 +5,14 @@ function funcao1()
     echo 'Entrei na função 1' . PHP_EOL;
     try {
         funcao2();
-    } catch (RuntimeException | DivisionByZeroError $erroOuExcecao) {
+    } catch (Throwable $problema) {
 
-        echo $erroOuExcecao->getMessage() . PHP_EOL;
-        echo $erroOuExcecao->getLine() . PHP_EOL;
-        echo $erroOuExcecao->getTraceAsString() . PHP_EOL;
+        echo $problema->getMessage() . PHP_EOL;
+        echo $problema->getLine() . PHP_EOL;
+        echo $problema->getTraceAsString() . PHP_EOL;
 
-        throw new RuntimeException(
-            'Exceção foi tratada, mas pega aí',
-            1,
-            $erroOuExcecao
-        );
     }
+
     echo 'Saindo da função 1' . PHP_EOL;
 }
 
