@@ -1,0 +1,17 @@
+{
+    "name": "laram/buscador-cursos",
+    "description": "Projeto que busca os cursos no site da Alura",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Laram\\BuscadorCursos\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "laramcj",
+            "email": "lara.mcj@gmail.com"
+        }
+    ],
+    "require": {}
+}
