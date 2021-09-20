@@ -13,5 +13,8 @@
             "email": "lara.mcj@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "guzzlehttp/guzzle": "^7.3",
+        "symfony/dom-crawler": "^4.2"
+    }
 }
