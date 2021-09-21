@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '01de1122ec13a5a8f96d9b6ccf7ec9015947646e',
+        'reference' => '59a29e020a289f6402925b0b2f6390efba52bdd5',
         'name' => 'laram/buscador-cursos',
         'dev' => true,
     ),
@@ -43,7 +43,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '01de1122ec13a5a8f96d9b6ccf7ec9015947646e',
+            'reference' => '59a29e020a289f6402925b0b2f6390efba52bdd5',
             'dev_requirement' => false,
         ),
         'psr/http-client' => array(
@@ -98,6 +98,15 @@
             'install_path' => __DIR__ . '/../ralouphie/getallheaders',
             'aliases' => array(),
             'reference' => '120b605dfeb996808c31b6477290a714d356e822',
+            'dev_requirement' => false,
+        ),
+        'symfony/css-selector' => array(
+            'pretty_version' => 'v4.4.27',
+            'version' => '4.4.27.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/css-selector',
+            'aliases' => array(),
+            'reference' => '5194f18bd80d106f11efa8f7cd0fbdcc3af96ce6',
             'dev_requirement' => false,
         ),
         'symfony/dom-crawler' => array(
