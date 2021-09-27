@@ -9,6 +9,8 @@
  */
 namespace PHPUnit\Runner;
 
+use function is_dir;
+use function is_file;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\Test;
 use PHPUnit\Framework\TestSuite;
@@ -21,23 +23,50 @@ use SebastianBergmann\FileIterator\Facade as FileIteratorFacade;
  */
 abstract class BaseTestRunner
 {
-    public const STATUS_UNKNOWN    = -1;
+    /**
+     * @var int
+     */
+    public const STATUS_UNKNOWN = -1;
 
-    public const STATUS_PASSED     = 0;
+    /**
+     * @var int
+     */
+    public const STATUS_PASSED = 0;
 
-    public const STATUS_SKIPPED    = 1;
+    /**
+     * @var int
+     */
+    public const STATUS_SKIPPED = 1;
 
+    /**
+     * @var int
+     */
     public const STATUS_INCOMPLETE = 2;
 
-    public const STATUS_FAILURE    = 3;
+    /**
+     * @var int
+     */
+    public const STATUS_FAILURE = 3;
 
-    public const STATUS_ERROR      = 4;
+    /**
+     * @var int
+     */
+    public const STATUS_ERROR = 4;
 
-    public const STATUS_RISKY      = 5;
+    /**
+     * @var int
+     */
+    public const STATUS_RISKY = 5;
 
-    public const STATUS_WARNING    = 6;
+    /**
+     * @var int
+     */
+    public const STATUS_WARNING = 6;
 
-    public const SUITE_METHODNAME  = 'suite';
+    /**
+     * @var string
+     */
+    public const SUITE_METHODNAME = 'suite';
 
     /**
      * Returns the loader to be used.
@@ -52,17 +81,15 @@ abstract class BaseTestRunner
      * This is a template method, subclasses override
      * the runFailed() and clearStatus() methods.
      *
-     * @param array|string $suffixes
+     * @param string|string[] $suffixes
      *
      * @throws Exception
-     * @throws ReflectionException
      */
     public function getTest(string $suiteClassName, string $suiteClassFile = '', $suffixes = ''): ?Test
     {
-        if (\is_dir($suiteClassName) &&
-            !\is_file($suiteClassName . '.php') && empty($suiteClassFile)) {
-            $facade = new FileIteratorFacade;
-            $files  = $facade->getFilesAsArray(
+        if (empty($suiteClassFile) && is_dir($suiteClassName) && !is_file($suiteClassName . '.php')) {
+            /** @var string[] $files */
+            $files = (new FileIteratorFacade)->getFilesAsArray(
                 $suiteClassName,
                 $suffixes
             );
@@ -95,18 +122,7 @@ abstract class BaseTestRunner
                 return null;
             }
 
-            try {
-                $test = $suiteMethod->invoke(null, $testClass->getName());
-            } catch (ReflectionException $e) {
-                $this->runFailed(
-                    \sprintf(
-                        "Failed to invoke suite() method.\n%s",
-                        $e->getMessage()
-                    )
-                );
-
-                return null;
-            }
+            $test = $suiteMethod->invoke(null, $testClass->getName());
         } catch (ReflectionException $e) {
             try {
                 $test = new TestSuite($testClass);
@@ -126,9 +142,7 @@ abstract class BaseTestRunner
      */
     protected function loadSuiteClass(string $suiteClassName, string $suiteClassFile = ''): ReflectionClass
     {
-        $loader = $this->getLoader();
-
-        return $loader->load($suiteClassName, $suiteClassFile);
+        return $this->getLoader()->load($suiteClassName, $suiteClassFile);
     }
 
     /**
