@@ -7,7 +7,6 @@ use GuzzleHttp\ClientInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-
 use Symfony\Component\DomCrawler\Crawler;
 
 class TestBuscadorDeCursos extends TestCase

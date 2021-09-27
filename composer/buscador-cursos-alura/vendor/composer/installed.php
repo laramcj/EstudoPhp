@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'e86a8d5ed058c6ceaf5bcc3ccf53658dcd4eb4fd',
+        'reference' => '3db8d8e6ddbbf1989241aad7af8cec648dff6ebc',
         'name' => 'laram/buscador-cursos',
         'dev' => true,
     ),
@@ -52,7 +52,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'e86a8d5ed058c6ceaf5bcc3ccf53658dcd4eb4fd',
+            'reference' => '3db8d8e6ddbbf1989241aad7af8cec648dff6ebc',
             'dev_requirement' => false,
         ),
         'myclabs/deep-copy' => array(
@@ -335,6 +335,15 @@
             'install_path' => __DIR__ . '/../sebastian/version',
             'aliases' => array(),
             'reference' => '99732be0ddb3361e16ad77b68ba41efc8e979019',
+            'dev_requirement' => true,
+        ),
+        'squizlabs/php_codesniffer' => array(
+            'pretty_version' => '3.6.0',
+            'version' => '3.6.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../squizlabs/php_codesniffer',
+            'aliases' => array(),
+            'reference' => 'ffced0d2c8fa8e6cdc4d695a743271fab6c38625',
             'dev_requirement' => true,
         ),
         'symfony/css-selector' => array(
