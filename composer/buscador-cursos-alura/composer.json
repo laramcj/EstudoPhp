@@ -27,9 +27,12 @@
         "cs": "phpcs --standard=PSR12 src/",
         "phan": "phan --allow-polyfill-parser",
         "check": [
-            "phan",
-            "cs",
-            "test"
+            "@phan",
+            "@cs",
+            "@test"
         ]
+    },
+    "scripts-descriptions": {
+        "check": "Roda as verificações do código. PHAN, PHPCS e PHPUNIT"
     }
 }
